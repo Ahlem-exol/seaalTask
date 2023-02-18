@@ -7,45 +7,45 @@ const sequelize = require('../utils/database');
 const User = sequelize.define(
   'user',
   {
-    user_id: {
+    id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       defaultValue: null,
       primaryKey: true,
       autoIncrement: true,
       comment: null,
-      field: "user_id"
+      field: "id"
     },
 
  
-    usr_password: {
+    password: {
       type: DataTypes.STRING(255),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "usr_password"
+      field: "password"
     },
-    usr_nom: {
+    nom: {
       type: DataTypes.STRING(50),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "usr_nom"
+      field: "nom"
     },
-    usr_prenom: {
+    prenom: {
       type: DataTypes.STRING(50),
       allowNull: false,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "usr_prenom"
+      field: "prenom"
     },
-    usr_email: {
+    email: {
       type: DataTypes.STRING(100),
       // validate: {
       //   isEmail:true
@@ -61,7 +61,7 @@ const User = sequelize.define(
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "usr_email"
+      field: "email"
     },
   
   

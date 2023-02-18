@@ -6,10 +6,10 @@ exports.createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
       const user = new User({
-        usr_email: req.body.email,
-        usr_nom: req.body.nom,
-        usr_prenom: req.body.prenom,
-        usr_password: hash,
+        email: req.body.email,
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        password: hash,
       });
       user.save()
         .then(result => {
@@ -28,7 +28,7 @@ exports.createUser = (req, res, next) => {
 
 exports.userLogin = (req, res, next) => {
   let fetchedUser;
-  User.findOne({ where: {usr_email: req.body.email} })
+  User.findOne({ where: {email: req.body.email} })
     .then(user => {
       if (!user) {
         return res.status(401).json({
@@ -36,7 +36,7 @@ exports.userLogin = (req, res, next) => {
         });
       }
       fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.usr_password);
+      return bcrypt.compare(req.body.password, user.password);
     })
     .then(result => {
       if (!result) {
@@ -46,11 +46,10 @@ exports.userLogin = (req, res, next) => {
       }else{
       
         userSend ={
-          nom: fetchedUser.usr_nom,
-          prenom :fetchedUser.usr_prenom,
-          email:fetchedUser.usr_email
+          nom: fetchedUser.nom,
+          prenom :fetchedUser.prenom,
+          email:fetchedUser.email
         }
-        console.log("usre to return", userSend)
         req.session.user = userSend;
           res.status(200).json({
             user: userSend,

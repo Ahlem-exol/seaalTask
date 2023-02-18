@@ -73,7 +73,7 @@ export class AuthService {
       this.router.navigateByUrl('dashboard/home');
     }, (errorResp) => {
       this.loggedIn.next(false);
-      
+      console.log(errorResp)
       errorResp.error ? this.toastr.error(errorResp.error.message) : this.toastr.error('An unknown error has occured.');
       this.router.navigateByUrl('login');
     });
